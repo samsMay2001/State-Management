@@ -6,9 +6,10 @@ import MealsProvider from './components/MealsProvider';
 function App() {
   return (
     <div className="App">
-      <MealsProvider>
+      {/* No need to wrap in MealsList in MealsProvider if you're just using normal functions check (MealList.js) and (Test.js) */}
+      {/* <MealsProvider> */}
         <MealsList/>
-      </MealsProvider>
+      {/* </MealsProvider> */}
     </div>
   );
 }
