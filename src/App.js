@@ -2,14 +2,29 @@ import logo from './logo.svg';
 import './App.css';
 import MealsList from './components/MealsList';
 import MealsProvider from './components/MealsProvider';
+import { useReducer, useState } from 'react';
+
+
+
+const reducer = (state, action)=> {
+  if (action.type == "ride") return {money: state.money + 10}; 
+  if (action.type == "fuel") return {money: state.money - 50}; 
+  return new Error(); 
+}
 
 function App() {
+
+  const initialState = {money: 100}; 
+  const [state, dispatch] = useReducer(reducer, initialState); 
+  // const [states, setState] = useState(initialState, reducer)
+
   return (
     <div className="App">
-      {/* No need to wrap in MealsList in MealsProvider if you're just using normal functions check (MealList.js) and (Test.js) */}
-      {/* <MealsProvider> */}
-        <MealsList/>
-      {/* </MealsProvider> */}
+      <h1>Wallet : {state.money}</h1>
+      <div>
+        <button onClick={()=> dispatch({type : 'ride'})}>A new customer</button>
+        <button onClick={()=> dispatch({type : 'fuel'})}>Refil tank</button>
+      </div>
     </div>
   );
 }
